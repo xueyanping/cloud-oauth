@@ -1,0 +1,25 @@
+server:
+  port: 8002
+  servlet:
+    context-path: /uaa
+
+# 设置应用名称，便于在注册中心中查看
+spring:
+  application:
+    name: auth-service
+  # 设置注册中心
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.31.208:8848
+        namespace: 02a57d82-f6ba-4e0b-bff0-d49da822a0b6
+      config:
+        file-extension: yaml
+        server-addr: 192.168.31.208:8848
+        namespace: 02a57d82-f6ba-4e0b-bff0-d49da822a0b6
+        shared-configs:
+          - data-id: dev-common.yaml
+            group: DEFAULT_GROUP
+            refresh: true
+  main:
+    allow-bean-definition-overriding: true

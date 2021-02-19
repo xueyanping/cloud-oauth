@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="cloud-oauth-framework-base" />
+        <module name="cloud-oauth-framework-oauth2" />
+        <module name="cloud-oauth-framework-security" />
+        <module name="cloud-oauth-gateway" />
+        <module name="cloud-oauth-uaa" />
+        <module name="cloud-oauth-user-client" />
+        <module name="cloud-oauth-user-service" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="cloud-oauth" target="1.8" />
+      <module name="cloud-oauth-dependencies" target="1.8" />
+      <module name="cloud-oauth-dependencis" target="1.8" />
+      <module name="cloud-oauth-dependience" target="1.8" />
+      <module name="cloud-oauth-framework" target="1.8" />
+      <module name="cloud-oauth-framework-base" target="1.8" />
+      <module name="cloud-oauth-framework-oauth2" target="1.8" />
+      <module name="cloud-oauth-framework-security" target="1.8" />
+      <module name="cloud-oauth-gateway" target="1.8" />
+      <module name="cloud-oauth-uaa" target="1.8" />
+      <module name="cloud-oauth-user" target="1.8" />
+      <module name="cloud-oauth-user-client" target="1.8" />
+      <module name="cloud-oauth-user-service" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

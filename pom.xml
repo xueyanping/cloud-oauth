@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+
+    <parent>
+        <groupId>com.test.oauth</groupId>
+        <artifactId>cloud-oauth-dependencies</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+        <relativePath>cloud-oauth-dependencies/pom.xml</relativePath>
+    </parent>
+
+    <groupId>com.test.oauth</groupId>
+    <artifactId>cloud-oauth</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0.0-SNAPSHOT</version>
+
+
+    <properties>
+        <project.version>1.0.0-SNAPSHOT</project.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <java.version>1.8</java.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+    </dependencies>
+
+    <modules>
+        <module>cloud-oauth-dependencies</module>
+        <module>cloud-oauth-gateway</module>
+        <module>cloud-oauth-user</module>
+        <module>cloud-oauth-uaa</module>
+        <module>cloud-oauth-framework</module>
+    </modules>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.test.oauth</groupId>
+                <artifactId>cloud-oauth-gateway</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.test.oauth</groupId>
+                <artifactId>cloud-oauth-uaa</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.test.oauth</groupId>
+                <artifactId>cloud-oauth-user-service</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.test.oauth</groupId>
+                <artifactId>cloud-oauth-user-client</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.test.oauth</groupId>
+                <artifactId>cloud-oauth-framework-base</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.test.oauth</groupId>
+                <artifactId>cloud-oauth-framework-oauth2</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+</project>

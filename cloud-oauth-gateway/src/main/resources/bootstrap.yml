@@ -1,0 +1,39 @@
+server:
+  port: 8000
+
+# 设置应用名称，便于在注册中心中查看
+spring:
+  application:
+    name: gateway-service
+  # 设置注册中心
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.31.208:8848
+        namespace: 02a57d82-f6ba-4e0b-bff0-d49da822a0b6
+      config:
+        file-extension: yaml
+        server-addr: 192.168.31.208:8848
+        namespace: 02a57d82-f6ba-4e0b-bff0-d49da822a0b6
+        shared-configs:
+          - data-id: dev-common.yaml
+            group: DEFAULT_GROUP
+            refresh: true
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+      routes:
+        - id: user-service
+          uri: lb://user-service
+          predicates:
+            - Path=/api/user/**
+          filters:
+            - RewritePath=/api/(?<segment>.*), /$\{segment}
+        - id: auth-service
+          uri: lb://auth-service
+          predicates:
+            - Path=/api/uaa/**
+          filters:
+            - RewritePath=/api/(?<segment>.*), /$\{segment}

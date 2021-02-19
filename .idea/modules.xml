@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/cloud-oauth.iml" filepath="$PROJECT_DIR$/cloud-oauth.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cloud-oauth-dependencies/cloud-oauth-dependencies.iml" filepath="$PROJECT_DIR$/cloud-oauth-dependencies/cloud-oauth-dependencies.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cloud-oauth-framework/cloud-oauth-framework.iml" filepath="$PROJECT_DIR$/cloud-oauth-framework/cloud-oauth-framework.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cloud-oauth-framework/cloud-oauth-framework-base/cloud-oauth-framework-base.iml" filepath="$PROJECT_DIR$/cloud-oauth-framework/cloud-oauth-framework-base/cloud-oauth-framework-base.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cloud-oauth-framework/cloud-oauth-framework-oauth2/cloud-oauth-framework-oauth2.iml" filepath="$PROJECT_DIR$/cloud-oauth-framework/cloud-oauth-framework-oauth2/cloud-oauth-framework-oauth2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cloud-oauth-framework/cloud-oauth-framework-security/cloud-oauth-framework-security.iml" filepath="$PROJECT_DIR$/cloud-oauth-framework/cloud-oauth-framework-security/cloud-oauth-framework-security.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cloud-oauth-gateway/cloud-oauth-gateway.iml" filepath="$PROJECT_DIR$/cloud-oauth-gateway/cloud-oauth-gateway.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cloud-oauth-uaa/cloud-oauth-uaa.iml" filepath="$PROJECT_DIR$/cloud-oauth-uaa/cloud-oauth-uaa.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cloud-oauth-user/cloud-oauth-user.iml" filepath="$PROJECT_DIR$/cloud-oauth-user/cloud-oauth-user.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cloud-oauth-user/cloud-oauth-user-client/cloud-oauth-user-client.iml" filepath="$PROJECT_DIR$/cloud-oauth-user/cloud-oauth-user-client/cloud-oauth-user-client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cloud-oauth-user/cloud-oauth-user-service/cloud-oauth-user-service.iml" filepath="$PROJECT_DIR$/cloud-oauth-user/cloud-oauth-user-service/cloud-oauth-user-service.iml" />
+    </modules>
+  </component>
+</project>

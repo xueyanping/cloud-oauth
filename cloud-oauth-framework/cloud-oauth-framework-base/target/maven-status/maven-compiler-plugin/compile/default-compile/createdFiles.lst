@@ -1,0 +1,3 @@
+com\cloud\oauth\framework\base\model\UserAuthentication.class
+com\cloud\oauth\framework\base\model\User.class
+com\cloud\oauth\framework\base\model\Authorize.class
