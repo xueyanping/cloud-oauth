@@ -18,17 +18,17 @@ import java.util.Map;
 @SpringBootApplication
 @EnableDiscoveryClient
 @EnableFeignClients
-//@EnableHystrix
-//@RestController
+@EnableHystrix
+@RestController
 public class GatewayApplication {
 
-//    @RequestMapping(value = "/fallback")
-//    public Map<String, String> fallBackController() {
-//        Map<String, String> res = new HashMap<>(10);
-//        res.put("code", "-100");
-//        res.put("data", "service not available");
-//        return res;
-//    }
+    @RequestMapping(value = "/fallback")
+    public Map<String, String> fallBackController() {
+        Map<String, String> res = new HashMap<>(10);
+        res.put("code", "-100");
+        res.put("data", "service not available");
+        return res;
+    }
 
     public static void main(String[] args) {
         SpringApplication.run(GatewayApplication.class, args);

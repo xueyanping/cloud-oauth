@@ -1,0 +1,106 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://192.168.31.208:3306/cloud-oauth?characterEncoding=utf8
+    username: root
+    password: 123456
+  # redis服务地址配置
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    # sentinel:
+    #   nodes: 192.168.66.179:16379,192.168.66.189:16379,192.168.66.199:16379
+    #   master: mymaster
+    database: 1
+    lettuce:
+      pool:
+        max-active: 32
+        max-wait: 1000ms
+        max-idle: 16
+        min-idle: 8
+security:
+  oauth2:
+    resource:
+      user-info-uri: http://localhost:8000/api/uaa/current
+      id: ${spring.application.name:}
+      filter-order: 500
+    client:
+      clientId: server
+      clientSecret: server
+      accessTokenUri: http://localhost:8000/api/uaa/oauth/token
+      grantType: client_credentials
+      grant_type: client_credentials
+      scope: server
+    token:
+      expireTime: 30
+logging:
+  level:
+    com.alibaba.nacos: warn
+
+# feign:
+#   hystrix:
+  #   enabled: true
+  # okhttp:
+  #   enabled: true
+  # httpclient:
+  #   enabled: false
+  #   max-connections: 1000
+  #   max-connections-per-route: 200
+# hystrix:
+#   share-security-context: true
+#   command:
+#     default:
+#       execution:
+#         isolation:
+#           thread:
+#             timeoutInMilliseconds: 70000
+#           strategy: SEMAPHORE
+#           semaphore:
+#             # Practically max int, but Hystrix needs an actual value. The default would be 10.
+#             # We do rate-limiting separately using a custom org.springframework.cloud.gateway.filter.ratelimit.AbstractRateLimiter based on resilience4j 
+#             maxConcurrentRequests: 100000
+# ribbon:
+#   ReadTimeout: 60000
+#   ConnectTimeout: 60000
+#   # httpclient:
+#   #    enabled: false # 默认开启需要禁用
+#   # okhttp:
+#   #    enabled: true
+# org:
+#   apache:
+#     ibatis: INFO
+    
+# management:
+#   endpoints:
+#     web:
+#       exposure:
+#         include: health,info,beans,env,refresh
+# server:
+#   tomcat:
+#     max-threads: 1000
+#     min-spare-threads: 64
+#     max-connections: 2000
+
+# ribbon:
+#   # 请求处理的超时时间
+#   ReadTimeout: 10000
+#   # 请求连接的超时时间
+#   ConnectTimeout: 10000
+#   # 最大连接数
+#   MaxTotalConnections: 500
+#   # 每个host最大连接数
+#   MaxConnectionsPerHost: 500
+  
+# #mybatis配置
+# mybatis-plus:
+#   global-config:
+#     id-type: 0  #0:数据库ID自增   1:用户输入id  2:全局唯一id(IdWorker)  3:全局唯一ID(uuid)
+#     db-column-underline: false
+#     refresh-mapper: true
+#     enable-sql-runner: true
+#   configuration:
+#     map-underscore-to-camel-case: true
+#     cache-enabled: true #配置的缓存的全局开关
+#     lazyLoadingEnabled: true #延时加载的开关
+#     multipleResultSetsEnabled: true #开启的话，延时加载一个属性时会加载该对象全部属性，否则按需加载属性
+    #log-impl: org.apache.ibatis.logging.stdout.StdOutImpl #打印sql语句,调试用

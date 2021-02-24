@@ -46,11 +46,11 @@
             <!--<artifactId>spring-cloud-netflix-hystrix-stream</artifactId>-->
         <!--</dependency>-->
         <!-- https://mvnrepository.com/artifact/com.squareup.okhttp3/okhttp -->
-        <!--<dependency>-->
-            <!--<groupId>com.squareup.okhttp3</groupId>-->
-            <!--<artifactId>okhttp</artifactId>-->
-            <!--<version>4.1.1</version>-->
-        <!--</dependency>-->
+        <dependency>
+            <groupId>com.squareup.okhttp3</groupId>
+            <artifactId>okhttp</artifactId>
+            <version>4.1.1</version>
+        </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-openfeign-core</artifactId>
@@ -75,11 +75,11 @@
         <!--</dependency>-->
 
         <!-- https://mvnrepository.com/artifact/com.squareup.okhttp3/okhttp -->
-        <!--<dependency>-->
-            <!--<groupId>com.squareup.okhttp3</groupId>-->
-            <!--<artifactId>okhttp</artifactId>-->
-            <!--<version>4.1.1</version>-->
-        <!--</dependency>-->
+        <dependency>
+            <groupId>com.squareup.okhttp3</groupId>
+            <artifactId>okhttp</artifactId>
+            <version>4.1.1</version>
+        </dependency>
 
         <!-- run on jdk 10 & 11 -->
         <dependency>
@@ -88,29 +88,6 @@
         </dependency>
         <!-- end -->
 
-        <!--enable hytrix -->
-        <!--断路器-->
-        <!--<dependency>-->
-            <!--<groupId>org.springframework.cloud</groupId>-->
-            <!--<artifactId>spring-cloud-starter-netflix-hystrix</artifactId>-->
-        <!--</dependency>-->
-        <!--&lt;!&ndash;集群监控消息队列&ndash;&gt;-->
-        <!--<dependency>-->
-            <!--<groupId>org.springframework.cloud</groupId>-->
-            <!--<artifactId>spring-cloud-netflix-hystrix-stream</artifactId>-->
-        <!--</dependency>-->
-        <!--日志跟踪
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-zipkin</artifactId>
-        </dependency>
-        -->
-        <!--消息总线-->
-        <!--<dependency>-->
-            <!--<groupId>org.springframework.cloud</groupId>-->
-            <!--<artifactId>spring-cloud-starter-stream-rabbit</artifactId>-->
-        <!--</dependency>-->
-        <!--end-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>

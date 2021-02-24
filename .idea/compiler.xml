@@ -6,13 +6,13 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="cloud-oauth-user-service" />
         <module name="cloud-oauth-framework-base" />
-        <module name="cloud-oauth-framework-oauth2" />
         <module name="cloud-oauth-framework-security" />
-        <module name="cloud-oauth-gateway" />
         <module name="cloud-oauth-uaa" />
         <module name="cloud-oauth-user-client" />
-        <module name="cloud-oauth-user-service" />
+        <module name="cloud-oauth-framework-oauth2" />
+        <module name="cloud-oauth-gateway" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -30,5 +30,16 @@
       <module name="cloud-oauth-user-client" target="1.8" />
       <module name="cloud-oauth-user-service" target="1.8" />
     </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="cloud-oauth-framework-base" options="-parameters" />
+      <module name="cloud-oauth-framework-oauth2" options="-parameters" />
+      <module name="cloud-oauth-framework-security" options="-parameters" />
+      <module name="cloud-oauth-gateway" options="-parameters" />
+      <module name="cloud-oauth-uaa" options="-parameters" />
+      <module name="cloud-oauth-user-client" options="-parameters" />
+      <module name="cloud-oauth-user-service" options="-parameters" />
+    </option>
   </component>
 </project>

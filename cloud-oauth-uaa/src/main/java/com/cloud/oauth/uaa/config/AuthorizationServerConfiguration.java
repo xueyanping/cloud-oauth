@@ -22,6 +22,7 @@ import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenCo
 @Configuration
 @EnableAuthorizationServer
 public class AuthorizationServerConfiguration extends AuthorizationServerConfigurerAdapter {
+
     @Autowired
     private PasswordEncoder passwordEncoder;
 
@@ -44,17 +45,23 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
                 .withClient("browser")
                 .secret(passwordEncoder.encode("server"))
                 .scopes("ui")
-                .authorizedGrantTypes("password", "refresh_token")
+                .authorizedGrantTypes("refresh_token","authorization_code","password","client_credentials")
                 .accessTokenValiditySeconds(3600)
                 .refreshTokenValiditySeconds(86400)
+                .authorities("p2")
+                .and()
+                .withClient("server")
+                .secret(passwordEncoder.encode("server"))
+                .scopes("server")
+                .authorizedGrantTypes("refresh_token","authorization_code","password","client_credentials")
+                .accessTokenValiditySeconds(1800)
+                .refreshTokenValiditySeconds(86400)
                 .authorities("p2");
-
     }
 
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) {
         endpoints.authenticationManager(authenticationManager);
-
     }
 
     @Override

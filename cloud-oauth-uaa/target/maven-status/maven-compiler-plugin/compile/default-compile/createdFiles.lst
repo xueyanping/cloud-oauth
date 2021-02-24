@@ -1,12 +1,9 @@
-com\cloud\oauth\uaa\model\User.class
 com\cloud\oauth\uaa\integration\authentor\BizSystemUserNamePasswordAuthenticator.class
 com\cloud\oauth\uaa\service\IntegrationUserDetailsService.class
 com\cloud\oauth\uaa\controller\UaaController.class
 com\cloud\oauth\uaa\integration\authentor\AbstractPreparableIntegrationAuthenticator.class
 com\cloud\oauth\uaa\integration\IntegrationAuthenticationContext.class
 com\cloud\oauth\uaa\config\AuthorizationServerConfiguration.class
-com\cloud\oauth\uaa\model\UserAuthentication.class
-com\cloud\oauth\uaa\client\BaseUserClient.class
 com\cloud\oauth\uaa\integration\IntegrationAuthentication.class
 com\cloud\oauth\uaa\integration\IntegrationAuthenticationFilter.class
 com\cloud\oauth\uaa\config\ResourceServerConfiguration.class
