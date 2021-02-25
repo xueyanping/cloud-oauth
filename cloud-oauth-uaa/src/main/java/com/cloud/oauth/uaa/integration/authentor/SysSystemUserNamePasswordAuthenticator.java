@@ -1,9 +1,9 @@
 package com.cloud.oauth.uaa.integration.authentor;
 
+
 import com.cloud.oauth.framework.base.model.UserAuthentication;
 import com.cloud.oauth.uaa.integration.IntegrationAuthentication;
 import com.cloud.oauth.user.BaseUserClient;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
@@ -16,15 +16,15 @@ import org.springframework.stereotype.Component;
  **/
 @Component
 @Primary
-public class BizSystemUserNamePasswordAuthenticator extends AbstractPreparableIntegrationAuthenticator {
+public class SysSystemUserNamePasswordAuthenticator extends AbstractPreparableIntegrationAuthenticator {
 
     @Autowired
-    private BaseUserClient baseUserClient;
+    private BaseUserClient sysUserClient;
 
     @Override
     public UserAuthentication authenticate(IntegrationAuthentication integrationAuthentication) {
-        UserAuthentication authentication = baseUserClient.findUserByLoginKey(integrationAuthentication.getUsername());
-        return authentication;
+        UserAuthentication sysUserAuthentication = sysUserClient.findUserByLoginKey(integrationAuthentication.getUsername());
+        return sysUserAuthentication;
     }
 
     @Override
@@ -34,9 +34,7 @@ public class BizSystemUserNamePasswordAuthenticator extends AbstractPreparableIn
 
     @Override
     public boolean support(IntegrationAuthentication integrationAuthentication) {
-        System.out.println("22222222222222222222222222222222222222222222");
-        return StringUtils.isEmpty(integrationAuthentication.getAuthType());
-//        return false;
+        System.out.println("11111111111111111111111111111111111111111");
+        return "sys".equalsIgnoreCase(integrationAuthentication.getAuthType());
     }
-
 }

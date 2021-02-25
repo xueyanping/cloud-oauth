@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
@@ -46,7 +45,7 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
                 .secret(passwordEncoder.encode("server"))
                 .scopes("ui")
                 .authorizedGrantTypes("refresh_token","authorization_code","password","client_credentials")
-                .accessTokenValiditySeconds(3600)
+                .accessTokenValiditySeconds(1800)
                 .refreshTokenValiditySeconds(86400)
                 .authorities("p2")
                 .and()

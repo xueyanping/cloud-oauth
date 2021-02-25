@@ -79,7 +79,7 @@ public class IntegrationUserDetailsService implements UserDetailsService {
         List<String> listRole = new ArrayList<>();
         listRole.add("r1");
         List<String> listResource = new ArrayList<>();
-        listRole.add("p1");
+        listResource.add("p1");
         user.setRoles(listRole);
         user.setResources(listResource);
     }
