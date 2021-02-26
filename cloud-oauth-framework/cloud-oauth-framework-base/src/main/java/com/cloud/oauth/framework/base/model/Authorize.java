@@ -1,5 +1,6 @@
 package com.cloud.oauth.framework.base.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -7,7 +8,7 @@ import java.util.Collection;
  * @author zhangzhn
  * @since 2019-06-10
  **/
-public class Authorize {
+public class Authorize implements Serializable {
 
     private Collection<String> resources = new ArrayList<>();
     private Collection<String> roles = new ArrayList<>();

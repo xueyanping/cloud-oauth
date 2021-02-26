@@ -1,11 +1,16 @@
 package com.cloud.oauth.uaa.config;
 
+import com.cloud.oauth.uaa.exception.WebResponseExceptionTranslator;
 import com.cloud.oauth.uaa.integration.IntegrationAuthenticationFilter;
+import com.cloud.oauth.uaa.service.DatabaseCachableClientDetailsService;
+import com.cloud.oauth.uaa.service.IntegrationUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
@@ -13,6 +18,7 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.E
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
+import org.springframework.security.oauth2.provider.token.store.redis.RedisTokenStore;
 
 /**
  * @author zhangzhn
@@ -23,10 +29,22 @@ import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenCo
 public class AuthorizationServerConfiguration extends AuthorizationServerConfigurerAdapter {
 
     @Autowired
-    private PasswordEncoder passwordEncoder;
+    private RedisConnectionFactory redisConnectionFactory;
+
+//    @Autowired
+//    private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private IntegrationUserDetailsService integrationUserDetailsService;
 
     @Autowired
     private AuthenticationManager authenticationManager;
+
+    @Autowired
+    private WebResponseExceptionTranslator webResponseExceptionTranslator;
+
+    @Autowired
+    private DatabaseCachableClientDetailsService cachableClientDetailsService;
 
     private final IntegrationAuthenticationFilter integrationAuthenticationFilter;
     private int expireTime;
@@ -40,27 +58,35 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
 
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-        clients.inMemory()
-                .withClient("browser")
-                .secret(passwordEncoder.encode("server"))
-                .scopes("ui")
-                .authorizedGrantTypes("refresh_token","authorization_code","password","client_credentials")
-                .accessTokenValiditySeconds(1800)
-                .refreshTokenValiditySeconds(86400)
-                .authorities("p2")
-                .and()
-                .withClient("server")
-                .secret(passwordEncoder.encode("server"))
-                .scopes("server")
-                .authorizedGrantTypes("refresh_token","authorization_code","password","client_credentials")
-                .accessTokenValiditySeconds(1800)
-                .refreshTokenValiditySeconds(86400)
-                .authorities("p2");
+        clients.withClientDetails(cachableClientDetailsService);
+//        clients.inMemory()
+//                .withClient("browser")
+//                .secret(passwordEncoder.encode("server"))
+//                .scopes("ui")
+//                .authorizedGrantTypes("refresh_token","authorization_code","password","client_credentials")
+//                .accessTokenValiditySeconds(expireTime)
+//                .refreshTokenValiditySeconds(86400)
+//                .authorities("p2")
+//                .and()
+//                .withClient("server")
+//                .secret(passwordEncoder.encode("server"))
+//                .scopes("server")
+//                .authorizedGrantTypes("refresh_token","authorization_code","password","client_credentials")
+//                .accessTokenValiditySeconds(expireTime)
+//                .refreshTokenValiditySeconds(86400)
+//                .authorities("p2");
     }
 
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) {
-        endpoints.authenticationManager(authenticationManager);
+
+        endpoints
+                .tokenStore(new RedisTokenStore(redisConnectionFactory))
+//                .accessTokenConverter(jwtAccessTokenConverter())
+                .authenticationManager(authenticationManager)
+                .exceptionTranslator(webResponseExceptionTranslator)
+                .reuseRefreshTokens(false)
+                .userDetailsService(integrationUserDetailsService);
     }
 
     @Override

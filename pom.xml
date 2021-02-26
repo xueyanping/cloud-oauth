@@ -38,6 +38,8 @@
         <module>cloud-oauth-user</module>
         <module>cloud-oauth-uaa</module>
         <module>cloud-oauth-framework</module>
+        <module>cloud-oauth-framework/yuke-trip-framework-criteria</module>
+        <module>cloud-oauth-framework/cloud-oauth-framework-util</module>
     </modules>
 
     <dependencyManagement>

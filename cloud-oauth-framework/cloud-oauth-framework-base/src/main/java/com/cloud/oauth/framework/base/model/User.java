@@ -5,6 +5,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.util.StringUtils;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.stream.Collectors;
@@ -13,7 +14,7 @@ import java.util.stream.Collectors;
  * @author zhangzhn
  * @since 2019-06-10
  **/
-public class User implements UserDetails, CredentialsContainer {
+public class User implements UserDetails, CredentialsContainer, Serializable {
 
     private String sourceSystem;
     private String id;
