@@ -2,7 +2,8 @@ package com.cloud.oauth.uaa.client.service.impl;
 
 import com.cloud.oauth.framework.base.service.impl.BaseServiceImpl;
 import com.cloud.oauth.uaa.client.service.ClientService;
-import com.cloud.oauth.uaa.entity.Client;
+import com.cloud.oauth.uaa.client.entity.Client;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -13,4 +14,6 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class ClientServiceImpl extends BaseServiceImpl<Client> implements ClientService {
+    @Autowired
+    private ClientService clientService;
 }

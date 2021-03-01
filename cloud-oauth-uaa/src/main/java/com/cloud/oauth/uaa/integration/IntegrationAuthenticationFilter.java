@@ -58,7 +58,6 @@ public class IntegrationAuthenticationFilter extends GenericFilterBean implement
             integrationAuthentication.setAuthParameters(request.getParameterMap());
             integrationAuthentication.setSessionId(request.getHeader(SESSION_ID));
             IntegrationAuthenticationContext.set(integrationAuthentication);
-            System.out.println("IntegrationAuthenticationContext==="+integrationAuthentication.toString());
             try {
                 //预处理
                 this.prepare(integrationAuthentication);

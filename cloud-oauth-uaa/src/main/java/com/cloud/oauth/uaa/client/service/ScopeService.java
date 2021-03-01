@@ -1,7 +1,7 @@
 package com.cloud.oauth.uaa.client.service;
 
 import com.cloud.oauth.framework.base.service.BaseService;
-import com.cloud.oauth.uaa.entity.Scope;
+import com.cloud.oauth.uaa.client.entity.Scope;
 
 /**
  * @ClassName: ScopeService

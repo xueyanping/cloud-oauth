@@ -34,7 +34,6 @@ public class BizSystemUserNamePasswordAuthenticator extends AbstractPreparableIn
 
     @Override
     public boolean support(IntegrationAuthentication integrationAuthentication) {
-        System.out.println("22222222222222222222222222222222222222222222");
         return StringUtils.isEmpty(integrationAuthentication.getAuthType());
 //        return false;
     }

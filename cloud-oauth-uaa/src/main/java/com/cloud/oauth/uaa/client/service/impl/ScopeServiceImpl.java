@@ -2,8 +2,8 @@ package com.cloud.oauth.uaa.client.service.impl;
 
 import com.cloud.oauth.framework.base.service.impl.BaseServiceImpl;
 import com.cloud.oauth.uaa.client.service.ScopeService;
-import com.cloud.oauth.uaa.entity.Client;
-import com.cloud.oauth.uaa.entity.Scope;
+import com.cloud.oauth.uaa.client.entity.Scope;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -14,4 +14,6 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class ScopeServiceImpl extends BaseServiceImpl<Scope> implements ScopeService {
+    @Autowired
+    private ScopeService scopeService;
 }

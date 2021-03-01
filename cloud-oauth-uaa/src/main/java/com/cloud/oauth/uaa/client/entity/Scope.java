@@ -1,4 +1,4 @@
-package com.cloud.oauth.uaa.entity;
+package com.cloud.oauth.uaa.client.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;

@@ -34,7 +34,6 @@ public class SysSystemUserNamePasswordAuthenticator extends AbstractPreparableIn
 
     @Override
     public boolean support(IntegrationAuthentication integrationAuthentication) {
-        System.out.println("11111111111111111111111111111111111111111");
         return "sys".equalsIgnoreCase(integrationAuthentication.getAuthType());
     }
 }
