@@ -9,12 +9,12 @@ spring:
   cloud:
     nacos:
       discovery:
-        server-addr: 192.168.66.197:8848
-        namespace: 02a57d82-f6ba-4e0b-bff0-d49da822a0b6
+        server-addr: 192.168.31.208:8848 #192.168.66.197:8848
+        namespace: cloud-oauth
       config:
         file-extension: yaml
-        server-addr: 192.168.66.197:8848
-        namespace: 02a57d82-f6ba-4e0b-bff0-d49da822a0b6
+        server-addr: 192.168.31.208:8848 #192.168.66.197:8848
+        namespace: cloud-oauth
         shared-configs:
           - data-id: dev-common.yaml
             group: DEFAULT_GROUP

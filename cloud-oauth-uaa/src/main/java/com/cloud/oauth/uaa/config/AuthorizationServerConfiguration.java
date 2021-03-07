@@ -4,14 +4,11 @@ import com.cloud.oauth.uaa.exception.WebResponseExceptionTranslator;
 import com.cloud.oauth.uaa.integration.IntegrationAuthenticationFilter;
 import com.cloud.oauth.uaa.service.DatabaseCachableClientDetailsService;
 import com.cloud.oauth.uaa.service.IntegrationUserDetailsService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
@@ -28,30 +25,34 @@ import org.springframework.security.oauth2.provider.token.store.redis.RedisToken
 @EnableAuthorizationServer
 public class AuthorizationServerConfiguration extends AuthorizationServerConfigurerAdapter {
 
-    @Autowired
     private RedisConnectionFactory redisConnectionFactory;
 
-//    @Autowired
-//    private PasswordEncoder passwordEncoder;
-
-    @Autowired
     private IntegrationUserDetailsService integrationUserDetailsService;
 
-    @Autowired
     private AuthenticationManager authenticationManager;
 
-    @Autowired
     private WebResponseExceptionTranslator webResponseExceptionTranslator;
 
-    @Autowired
     private DatabaseCachableClientDetailsService cachableClientDetailsService;
 
-    private final IntegrationAuthenticationFilter integrationAuthenticationFilter;
+    private IntegrationAuthenticationFilter integrationAuthenticationFilter;
+
     private int expireTime;
 
-    public AuthorizationServerConfiguration(IntegrationAuthenticationFilter integrationAuthenticationFilter,
+
+    public AuthorizationServerConfiguration(RedisConnectionFactory redisConnectionFactory,
+                                            AuthenticationManager authenticationManager,
+                                            IntegrationUserDetailsService integrationUserDetailsService,
+                                            WebResponseExceptionTranslator webResponseExceptionTranslator,
+                                            IntegrationAuthenticationFilter integrationAuthenticationFilter,
+                                            DatabaseCachableClientDetailsService redisClientDetailsService,
                                             @Value("${security.oauth2.token.expireTime:30}") int expireTime) {
+        this.redisConnectionFactory = redisConnectionFactory;
+        this.authenticationManager = authenticationManager;
+        this.integrationUserDetailsService = integrationUserDetailsService;
+        this.webResponseExceptionTranslator = webResponseExceptionTranslator;
         this.integrationAuthenticationFilter = integrationAuthenticationFilter;
+        this.cachableClientDetailsService = redisClientDetailsService;
         this.expireTime = expireTime;
     }
 
@@ -79,13 +80,27 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
 
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) {
-
+        CustomerTokenServices tokenServices = new CustomerTokenServices();
+        //token持久化容器
+        tokenServices.setTokenStore(new CustomRedisTokenStore(redisConnectionFactory));
+        //是否支持refresh_token，默认false
+        tokenServices.setSupportRefreshToken(true);
+        //客户端信息
+        tokenServices.setClientDetailsService(endpoints.getClientDetailsService());
+        //自定义token生成
+        //tokenServices.setTokenEnhancer(tokenEnhancer());
+        //access_token 的有效时长 (秒), 默认 12 小时
+        tokenServices.setAccessTokenValiditySeconds(60 * expireTime);
+        //refresh_token 的有效时长 (秒), 默认 30 天
+        tokenServices.setRefreshTokenValiditySeconds(-1);
+        //是否复用refresh_token,默认为true(如果为false,则每次请求刷新都会删除旧的refresh_token,创建新的refresh_token)
+        tokenServices.setReuseRefreshToken(true);
         endpoints
                 .tokenStore(new RedisTokenStore(redisConnectionFactory))
 //                .accessTokenConverter(jwtAccessTokenConverter())
                 .authenticationManager(authenticationManager)
                 .exceptionTranslator(webResponseExceptionTranslator)
-                .reuseRefreshTokens(false)
+                .tokenServices(tokenServices)
                 .userDetailsService(integrationUserDetailsService);
     }
 
