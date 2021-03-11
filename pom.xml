@@ -84,6 +84,11 @@
                 <artifactId>cloud-oauth-framework-security</artifactId>
                 <version>${project.version}</version>
             </dependency>
+            <dependency>
+                <groupId>com.test.oauth</groupId>
+                <artifactId>cloud-oauth-framework-core</artifactId>
+                <version>${project.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 </project>

@@ -48,7 +48,6 @@ public class IntegrationUserDetailsService implements UserDetailsService {
 
     @Override
     public User loadUserByUsername(String username) throws UsernameNotFoundException {
-        System.out.println("username=="+username);
         IntegrationAuthentication integrationAuthentication = IntegrationAuthenticationContext.get();
         //判断是否是集成登录
         if (integrationAuthentication == null) {
