@@ -20,6 +20,7 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Aut
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 import org.springframework.security.oauth2.provider.token.store.redis.RedisTokenStore;
 
+
 /**
  * @author zhangzhn
  * @since 2019-06-10
@@ -104,4 +105,6 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
         jwtAccessTokenConverter.setSigningKey("cloud-oauth");
         return jwtAccessTokenConverter;
     }
+
+
 }
